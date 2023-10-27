@@ -1,13 +1,15 @@
-#NOT NULL UPDATE VS.
-CREATE TABLE Patient ( 
-	pid CHAR(5),
-	pname CHAR(20),
-	record_id CHAR(5),
-	record_date DATE,
-	diagnosis CHAR(20),
-	gender CHAR(1),
-	birth_date DATE,
-	PRIMARY KEY  (pid,record_id));
+CREATE TABLE Patient (
+    pid CHAR(5) NOT NULL,
+    pname CHAR(20),
+    record_id CHAR(5) NOT NULL,
+    record_date DATE,
+    diagnosis CHAR(20),
+    gender CHAR(1),
+    birth_date DATE,
+    PRIMARY KEY (pid, record_id),
+    INDEX idx_pid (pid),        -- Add an index for pid
+    INDEX idx_record_id (record_id)  -- Add an index for record_id
+);
 
 CREATE TABLE Employees ( 
 	eid CHAR(5),
@@ -84,18 +86,6 @@ CREATE TABLE Owns_Insurance ( #weak entity + relation
 	FOREIGN KEY  (record_id) REFERENCES Patient (record_id) ON DELETE CASCADE);
 
 #NOT NULL UPDATE VS.
-CREATE TABLE Patient (
-    pid CHAR(5) NOT NULL,
-    pname CHAR(20),
-    record_id CHAR(5) NOT NULL,
-    record_date DATE,
-    diagnosis CHAR(20),
-    gender CHAR(1),
-    birth_date DATE,
-    PRIMARY KEY (pid, record_id),
-    INDEX idx_pid (pid),        -- Add an index for pid
-    INDEX idx_record_id (record_id)  -- Add an index for record_id
-);
 
 
 CREATE TABLE Employees ( 
